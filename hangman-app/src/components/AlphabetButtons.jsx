@@ -1,18 +1,7 @@
 import React from 'react';
-
-// Import all alphabet images
-import aImg from '../assets/alphabet/a.png';
-import bImg from '../assets/alphabet/b.png';
-// Import other alphabet images as needed
+import alphabetImages from '../utils/AlphabetImages';
 
 function AlphabetButtons({ alphabet, onClick }) {
-  // Map each letter to its corresponding image
-  const alphabetImages = {
-    'a': aImg,
-    'b': bImg,
-    // Add other letters here
-  };
-
   return (
     <div className="letters">
       {alphabet.split('').map((letter, index) => (
