@@ -7,7 +7,7 @@ function StartMenu({ onStart }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % animationImages.length);
-    }, 200);
+    }, 180);
 
     return () => clearInterval(interval);
   }, []);
