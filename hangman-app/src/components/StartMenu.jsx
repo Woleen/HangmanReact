@@ -18,7 +18,8 @@ function StartMenu({ onStart }) {
         <img src={animationImages[currentImageIndex]} alt={`Animation ${currentImageIndex}`} />
       </div>
       <button className="start-button" onClick={onStart}>START</button>
-      {/* Other menu buttons */}
+      <button className="leaderboard-button" onClick={{}}>LEADERBOARD</button>
+      <button className="authors-button" onClick={{}}>AUTHORS</button>
     </div>
   );
 }
