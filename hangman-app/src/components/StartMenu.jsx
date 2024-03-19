@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import animationImages from '../utils/AnimationImages';
+import animationImages from '../utils/animationImages';
 
 function StartMenu({ onStart }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

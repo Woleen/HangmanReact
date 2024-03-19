@@ -1,5 +1,5 @@
 import React from 'react';
-import alphabetImages from '../utils/AlphabetImages';
+import alphabetImages from '../utils/alphabetImages';
 
 function AlphabetButtons({ alphabet, onClick }) {
   return (
