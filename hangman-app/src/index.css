@@ -1,13 +1,222 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.container {
+  display: flex;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.animate {
+  position: absolute;
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  width: 50px;
+  margin-top: 50px;
+  margin-left: 10px;
+  padding: 5px;
+  border-bottom: 5px solid;
+  border-color: darkred;
+}
+
+.hang {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 38%;
+  transform: translate(-40%, -40%);
+}
+
+.content {
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: black;
+}
+
+h1 {
+  font-size: 80px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+.center {
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: darkred;
+}
+
+.wrapper {
+  position: absolute;
+  overflow: hidden;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: black;
+}
+
+.start-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+}
+
+.animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  margin-bottom: 10px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.start-button,
+.leaderboard-button,
+.authors-button,
+.go-menu {
+  margin-bottom: 10px;
+  background-color: black;
+  color: darkred;
+  width: 250px;
+  height: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 30px;
+  border-color: darkred;
+  border-width: 5px;
+}
+
+.letters-vowels,
+.letters-consonants1,
+.letters-consonants2 {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s;
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  height: 50px;
+  width: 50px;
+  padding: 5px;
+}
+
+.letters-vowels {
+  top: 20%;
+  left: 10%;
+}
+
+.letters-consonants1 {
+  top: 15%;
+  right: 15%;
+}
+
+.letters-consonants2 {
+  top: 20%;
+  right: 10%;
+}
+
+.letters {
+  height: 50px;
+  width: 50px;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.hidden-letter {
+  visibility: hidden;
+}
+
+.show-out {
+  animation: showOut 0.5s reverse;
+}
+
+@keyframes showOut {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 768px) {
+  /* Adjust styles for smaller screens */
+  .start-menu {
+      height: auto;
+      padding: 20px;
+  }
+
+  .animation {
+      height: 30%;
+  }
+
+  .buttons-container {
+      justify-content: center;
+  }
+
+  .start-button,
+  .leaderboard-button,
+  .authors-button,
+  .go-menu {
+      width: 200px;
+      height: 50px;
+      font-size: 20px;
+  }
+
+  .letters-vowels,
+  .letters-consonants1,
+  .letters-consonants2 {
+      height: 40px;
+      width: 40px;
+  }
+
+  h1 {
+      font-size: 60px;
+  }
+
+  h2 {
+      font-size: 20px;
+  }
+}
+
