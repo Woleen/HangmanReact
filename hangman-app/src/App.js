@@ -19,16 +19,16 @@ function App() {
   const [lives, setLives] = useState(6);
   const [score, setScore] = useState(0);
   const [alphabet] = useState("abcdefghijklmnopqrstuvwxyz");
+  const [gameStarted, setGameStarted] = useState(false);
 
-  // Function to start the game
   function onStart() {
     const randomIndex = Math.floor(Math.random() * wordList.length);
     setWord(wordList[randomIndex].word.toLowerCase());
-    setLives(6); // Reset lives
-    setScore(0); // Reset score
+    setLives(6);
+    setScore(0);
+    setGameStarted(true);
   }
 
-  // Function to handle alphabet button clicks
   function handleAlphabetClick(letter) {
     const found = word.includes(letter);
 
@@ -41,36 +41,37 @@ function App() {
       setScore(score + 10);
 
       if (!updatedWord.includes('-')) {
-        // All letters are revealed, player wins
-        // Implement logic for winning the game
+        // Implement logic for winning the game - WinImage
       }
     } else {
       setLives(lives - 1);
 
       if (lives - 1 === 0) {
-        // Player has lost all lives, implement logic for losing the game
+        // Implement logic for losing the game - GameOverImage
       }
     }
   }
 
   return (
     <div className="App">
-      <StartMenu onStart={onStart} />
-      <div className="wrapper">
-        <Hangman lives={lives} />
-        <div className="container">
-          {word.split('').map((_, index) => (
-            <div key={index} className="item" />
-          ))}
+      {!gameStarted && <StartMenu onStart={onStart} />}
+      {gameStarted && (
+        <div className="wrapper">
+          <Hangman lives={lives} />
+          <div className="container">
+            {word.split('').map((_, index) => (
+              <div key={index} className="item" />
+            ))}
+          </div>
+          <AlphabetButtons alphabet={alphabet} onClick={handleAlphabetClick} />
+          <div id="score">
+            <p>Score: {score}</p>
+          </div>
+          {lives === 0 && (
+            <button className="restart" onClick={onStart}>Restart</button>
+          )}
         </div>
-        <AlphabetButtons alphabet={alphabet} onClick={handleAlphabetClick} />
-        <div id="score">
-          <p>Score: {score}</p>
-        </div>
-        {lives === 0 && (
-          <button className="restart" onClick={onStart}>Restart</button>
-        )}
-      </div>
+      )}
     </div>
   );
 }
