@@ -1,4 +1,4 @@
-import winImg from '../assets/gameover/win.png';
+import winImg from '../assets/win/win.png';
 import gameoverImg from '../assets/gameover/gameover.png';
 
 

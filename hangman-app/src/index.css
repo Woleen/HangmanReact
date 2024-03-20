@@ -67,15 +67,12 @@ h2 {
 }
 
 .wrapper {
-  position: absolute;
-  overflow: hidden;
   display: flex;
-  height: 100%;
+  justify-content: center; /* Horizontally center */
+  height: 100vh;
   width: 100%;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
   background-color: black;
+  overflow: hidden; /* Ensure content does not overflow */
 }
 
 .start-menu {
@@ -118,39 +115,7 @@ h2 {
   border-width: 5px;
 }
 
-.letters-vowels,
-.letters-consonants1,
-.letters-consonants2 {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.3s;
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  height: 50px;
-  width: 50px;
-  padding: 5px;
-}
 
-.letters-vowels {
-  top: 20%;
-  left: 10%;
-}
-
-.letters-consonants1 {
-  top: 15%;
-  right: 15%;
-}
-
-.letters-consonants2 {
-  top: 20%;
-  right: 10%;
-}
-
-.letters {
-  height: 50px;
-  width: 50px;
-}
 
 .fade-out {
   opacity: 0;
