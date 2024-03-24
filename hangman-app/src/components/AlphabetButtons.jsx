@@ -11,6 +11,7 @@ function AlphabetButtons({ alphabet, onClick, guessedLetters }) {
             src={alphabetImages[letter]}
             alt={letter}
             onClick={() => onClick(letter)}
+            className="alphabet-button"
           />
         )
       ))}

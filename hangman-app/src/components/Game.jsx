@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Hangman from './Hangman';
 import AlphabetButtons from './AlphabetButtons';
 import wordList from '../utils/wordList';
-import alphabetImages from '../utils/alphabetImages'
+import alphabetImages from '../utils/alphabetImages';
 import winAndLoseImages from '../utils/winAndLoseImages';
 
 function Game() {
   const [word, setWord] = useState('');
   const [lives, setLives] = useState(6);
+  const [displayedWord, setDisplayedWord] = useState([]);
   const [score, setScore] = useState(0);
   const [alphabet] = useState("abcdefghijklmnopqrstuvwxyz");
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [win, setWin] = useState(false);
   const [lose, setLose] = useState(false);
 
-  function handleAlphabetClick(letter) {
+  useEffect(() => {
+    startGame();
+  }, []);
 
+  useEffect(() => {
+    const updatedWord = word ? word.split('').map(char => guessedLetters.includes(char) ? char : '_') : [];
+    setDisplayedWord(updatedWord);
+    if (updatedWord.join('') === word) {
+      setWin(true);
+    }
+  }, [guessedLetters, word]);
+
+  function handleAlphabetClick(letter) {
     if (guessedLetters.includes(letter)) {
       return;
     }
@@ -24,27 +36,11 @@ function Game() {
   
     if (found) {
       setGuessedLetters([...guessedLetters, letter]);
-  
-      const updatedWord = word.split('').map((char) => {
-        if (char === letter) {
-          return <img src={alphabetImages[letter]} alt={letter} />;
-        }
-        return ' ';
-      });
-      setWord(updatedWord);
       setScore(score + 10);
-  
-      if (!updatedWord.includes(' ')) {
-        setWin(true);
-      }
     } else {
-
-      if (!guessedLetters.includes(letter)) {
-        setLives(lives - 1);
-      }
-  
+      setLives(lives - 1);
       if (lives - 1 === 0) {
-
+        setLose(true);
       }
     }
   }
@@ -55,26 +51,42 @@ function Game() {
     setLives(6);
     setScore(0);
     setGuessedLetters([]);
+    setWin(false);
+    setLose(false);
   }
-
+  
   return (
     <div className="wrapper">
       <Hangman lives={lives} />
       <div className="container">
-        {word.split('').map((letter, index) => (
+        {displayedWord.map((letter, index) => (
           <div key={index} className="item">
-            {guessedLetters.includes(letter) ? alphabetImages[letter] : ' '}
+            {guessedLetters.includes(letter) && (          
+              <img
+                key={index}
+                src={alphabetImages[letter]}
+                alt={letter}
+              />
+            )}
           </div>
         ))}
       </div>
-      <AlphabetButtons
-        alphabet={alphabet}
-        onClick={handleAlphabetClick}
-        guessedLetters={guessedLetters}
-      />
+      <div className="alphabet-buttons-container">
+        <AlphabetButtons
+          alphabet={alphabet}
+          onClick={handleAlphabetClick}
+          guessedLetters={guessedLetters}
+        />
+      </div>
       <div id="score">
         <p>Score: {score}</p>
       </div>
+      {win && (
+        <img src={winAndLoseImages.win} alt="You win" />
+      )}
+      {lose && (
+        <img src={winAndLoseImages.lose} alt="You lose" />
+      )}
       {lives === 0 && (
         <button className="restart" onClick={startGame}>Restart</button>
       )}
